@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="text" name="eid" id="eid" required="_required" placeholder="Employee #"/>
+                                <input type="text" name="eid" id="eid" required="_required" placeholder="username"/>
                             </div>
                             <div class="form-group">
                                 <label for="email"><i class="zmdi zmdi-email"></i></label>
