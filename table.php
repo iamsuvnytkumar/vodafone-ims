@@ -228,7 +228,7 @@ if (isset($_GET['logout'])) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $conn = new mysqli('localhost', 'root', '', 'inventorymanagement');
+                                                    $conn = new mysqli('us-cdbr-east-03.cleardb.com', 'b8fde6f3e15a94', '9e0c4460', 'heroku_1fc3bbe61793651');
                                                     $sql = "SELECT * FROM product";
                                                     $result = $conn->query($sql);
                                                     $count = 0;
