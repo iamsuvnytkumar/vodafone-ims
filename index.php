@@ -97,7 +97,7 @@ if (isset($_GET['logout'])) {
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
-                    <a href="index.php"><img src="assets/images/icon/logo.png" alt="logo"></a>
+                    <a href="index.php"><img src="logo.png" alt="logo"></a>
                 </div>
             </div>
             <div class="main-menu">
