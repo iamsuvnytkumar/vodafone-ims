@@ -195,7 +195,7 @@ if (isset($_GET['logout'])) {
                                                 <tbody>
                                                     
                                                 <?php
-                                                    $conn = new mysqli('localhost', 'root', '', 'inventorymanagement');
+                                                    $conn = new mysqli('us-cdbr-east-03.cleardb.com', 'b8fde6f3e15a94', '9e0c4460', 'heroku_1fc3bbe61793651');
                                                     $sql = "SELECT staff.username, product.product_name,product.date, product.serial_num,product.price,product.c_status,product.remarks
                                                     FROM product
                                                     INNER JOIN staff ON product.username=staff.username";
