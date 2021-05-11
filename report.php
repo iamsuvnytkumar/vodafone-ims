@@ -42,7 +42,6 @@ if (isset($_GET['logout'])) {
 
     <style>
         body {
-            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
@@ -278,11 +277,7 @@ if (isset($_GET['logout'])) {
                     <!-- others plugins -->
                     <script src="assets/js/plugins.js"></script>
                     <script src="assets/js/scripts.js"></script>
-                    <footer>
-            <div class="footer-area">
-                <p>© Copyright Suvneet Kumar. All rights reserved.</a></p>
-            </div>
-        </footer>
+                
 </body>
 
 </html>
