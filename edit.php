@@ -65,13 +65,13 @@ echo "No results!";
 <body>
 
 
-
+<div class="content">
 <form action="" method="post" action="edit.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
 
 <table border="1">
 <tr>
-<td colspan="2"><b><font color='Red'>Edit Records </font></b></td>
+  <td colspan="2"><b><font color='Red'><center>Edit Records</center></font></b></td>
 </tr>
 
 <tr>
@@ -110,5 +110,6 @@ echo "No results!";
 </tr>
 </table>
 </form>
+  </div>
 </body>
 </html>
