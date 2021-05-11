@@ -46,7 +46,7 @@ echo "No results!";
 <html>
 <head>
 <title>Edit Item</title>
-  <link rel="shortcut icon" type="image/jpg" href="logo.png"/>
+  <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
   <style>
         .content {
             max-width: 500px;
