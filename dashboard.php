@@ -19,7 +19,7 @@ if (isset($_GET['logout'])) {
 
 <head>
     <title>Dashboard</title>
-    <link rel="shortcut icon" type="image/jpg" href="logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Inventory Management System</title>
