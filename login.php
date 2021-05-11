@@ -21,7 +21,7 @@
         }
 
         body {
-            background-image: url("image.JPG");
+            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
@@ -32,7 +32,7 @@
 
         body {
             text-align: center;
-            background-image: url("image.JPG");
+            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
