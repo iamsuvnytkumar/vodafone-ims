@@ -20,7 +20,6 @@
                 text-align: center;
             }
             body {
-            background-image: url("image.JPG");
             background-color: #cccccc;
         }
 
