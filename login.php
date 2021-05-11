@@ -115,7 +115,7 @@
 
     <div class="container">
 
-        <figure><img src="images/signin-image.PNG" alt="logo"></figure>
+        <figure><img src="images/signin-image.png" alt="logo"></figure>
         <h1 class="form-title">Vodafone Inventory Management System</h1>
         <a href="adminlogin.php">
             Go To Admin Login
