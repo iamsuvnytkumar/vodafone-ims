@@ -59,7 +59,7 @@ if (isset($_GET['logout'])) {
         .card{
             margin-left: auto;
             margin-right: auto;
-            width: 600px;
+            width: auto;
         }
 
         .single-table{
@@ -71,7 +71,7 @@ if (isset($_GET['logout'])) {
         .card{
             margin-left: auto;
             margin-right: auto;
-            width: 800px;
+            width: auto;
         }
         .form-group{
             width: 700px;
