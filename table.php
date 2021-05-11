@@ -41,7 +41,7 @@ if (isset($_GET['logout'])) {
 
     <style>
         body {
-            background-image: url("image.JPG");
+            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
