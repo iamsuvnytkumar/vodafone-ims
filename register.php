@@ -70,7 +70,7 @@
                         </form>
                     </div>
                     <div class="signup-image">
-                        <figure><img src="images/signup-image.PNG" alt="sing up image"></figure>
+                        <figure><img src="images/signup-image.png" alt="sing up image"></figure>
                         <h1 class="form-title">Vodafone Inventory Management System</h1>
                         <a href="login.php" class="signup-image-link">I am already member</a>
                     </div>
