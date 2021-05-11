@@ -97,7 +97,7 @@ if (isset($_GET['logout'])) {
         <div class="sidebar-menu">
             <div class="sidebar-header">
                 <div class="logo">
-                    <a href="index.php"><img src="assets/images/icon/logo.PNG" alt="logo"></a>
+                    <a href="index.php"><img src="assets/images/icon/logo.png" alt="logo"></a>
                 </div>
             </div>
             <div class="main-menu">
@@ -196,7 +196,7 @@ if (isset($_GET['logout'])) {
                                                                     echo $_SESSION['last_name']; ?></strong></h2>
 
                 <?php endif ?>
-                <img src="image.JPG" alt="welcome " style="width:100%">
+                <img src="image.jpg" alt="welcome " style="width:100%">
 
             </div>
 
