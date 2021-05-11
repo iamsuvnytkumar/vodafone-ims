@@ -41,13 +41,13 @@ echo "No results!";
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-<title>Edit Item</title>
+<title>Update</title>
 </head>
 <body>
 
 
 
-<form action="" method="post" action="edit.php">
+<form action="" method="post" action="update.php">
 <input type="hidden" name="id" value="<?php echo $id; ?>"/>
 
 <table border="1">
