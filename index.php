@@ -18,7 +18,7 @@ if (isset($_GET['logout'])) {
 
 <head>
     <title>Home</title>
-    <link rel="shortcut icon" type="image/jpg" href="logo.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="Inventmng/srtdash/assets/bootstrap.min.css">
 </head>
