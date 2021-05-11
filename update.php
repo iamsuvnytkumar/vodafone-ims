@@ -42,6 +42,22 @@ echo "No results!";
 <html>
 <head>
 <title>Update</title>
+<link rel="shortcut icon" type="image/jpg" href="logo.png"/>
+  
+      <style>
+        .content {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        table {
+            width: 500px;
+        }
+
+        tr {
+            height: 70px;
+        }
+    </style>
 </head>
 <body>
 
@@ -69,7 +85,7 @@ echo "No results!";
 </label></td>
 </tr>
 
-<tr align="Right">
+<tr align="Center">
 <td colspan="2"><label>
 <input type="submit" name="submit" value="Edit Records">
 </label></td>
