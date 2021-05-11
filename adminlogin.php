@@ -21,7 +21,7 @@
         }
 
         body {
-            background-image: url("image.JPG");
+            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
@@ -32,7 +32,7 @@
 
         body {
             text-align: center;
-            background-image: url("image.JPG");
+            background-image: url("image.jpg");
             background-color: #cccccc;
         }
 
@@ -116,7 +116,7 @@
 
     <div class="container">
 
-        <figure><img src="images/signin-image.PNG" alt="logo"></figure>
+        <figure><img src="images/signin-image.png" alt="logo"></figure>
         <h1 class="form-title">Vodafone Inventory Management System</h1>
         <a href="login.php">
             Go To Staff Login
