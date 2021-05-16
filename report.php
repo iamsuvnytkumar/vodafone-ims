@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Reports</title>
-    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -37,6 +37,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="manifest" href="manifest.json">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -50,24 +51,55 @@ if (isset($_GET['logout'])) {
             text-align: center;
         }
 
-        .single-table{
+        .single-table {
             margin-left: auto;
             margin-right: auto;
             width: auto;
         }
 
-        .card{
+        .card {
             margin-left: auto;
             margin-right: auto;
             width: auto;
         }
-        .form-group{
+
+        .form-group {
             width: 700px;
+        }
+
+        .btn {
+            padding: 15px 25px;
+            font-size: 24px;
+            text-align: center;
+            margin-left: 40px;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .btn:hover {
+            background-color: #3e8e41
+        }
+
+        .btn:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
         }
     </style>
 </head>
 
 <body>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+    </script>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -166,6 +198,9 @@ if (isset($_GET['logout'])) {
             <div>
 
                 <h1 style="text-align:center">Report</h1>
+                <p>
+                    <input type="button" class="btn" value="Download PDF" id="btPrint" onclick="createPDF()" />
+                </p>
 
                 <div class="main-content-inner">
                     <div class="row">
@@ -177,58 +212,63 @@ if (isset($_GET['logout'])) {
                                     <h4 style="text-align:center" class="header-title">Assets</h4>
                                     <div class="single-table">
                                         <div class="table-responsive">
-                                            <table class="table text-dark text-center">
-                                                <thead class="text-uppercase">
-                                                    <tr class="table-active">
-                                                        <th scope="col">ID</th>
-                                                        <th scope="col">Serial Number</th>
-                                                        <th scope="col">Product Name</th>
-                                                        <th scope="col">Product Price</th>
-                                                        <th scope="col">Assigned To</th>
-                                                        <th scope="col">Assigned On</th>
-                                                        <th scope="col">Status</th>
-                                                        <th scope="col">Remarks</th>
+                                            <div id="tab">
+                                                <table class="table text-dark text-center">
+                                                    <thead class="text-uppercase">
+                                                        <tr class="table-active">
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Serial Number</th>
+                                                            <th scope="col">Product Name</th>
+                                                            <th scope="col">Product Price</th>
+                                                            <th scope="col">Assigned To</th>
+                                                            <th scope="col">Assigned On</th>
+                                                            <th scope="col">Status</th>
+                                                            <th scope="col">Remarks</th>
 
 
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    
-                                                <?php
-                                                    $conn = new mysqli('us-cdbr-east-03.cleardb.com', 'b8fde6f3e15a94', '9e0c4460', 'heroku_1fc3bbe61793651');
-                                                    $sql = "SELECT staff.username, product.product_name,product.date, product.serial_num,product.price,product.c_status,product.remarks
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        <?php
+                                                        $conn = new mysqli('us-cdbr-east-03.cleardb.com', 'b8fde6f3e15a94', '9e0c4460', 'heroku_1fc3bbe61793651');
+                                                        $sql = "SELECT staff.username, product.product_name,product.date, product.serial_num,product.price,product.c_status,product.remarks
                                                     FROM product
                                                     INNER JOIN staff ON product.username=staff.username";
-                                                    $result = $conn->query($sql);
-                                                    $count = 0;
-                                                    if ($result->num_rows >  0) {
+                                                        $result = $conn->query($sql);
+                                                        $count = 0;
+                                                        if ($result->num_rows >  0) {
 
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            $count = $count + 1;
-                                                    ?>
+                                                            while ($row = $result->fetch_assoc()) {
+                                                                $count = $count + 1;
+                                                        ?>
 
 
-                                                            <tr>
-                                                                <th><?php echo $count ?></th>
-                                                                <th><?php echo $row["serial_num"] ?></th>
-                                                                <th><?php echo $row["product_name"] ?></th>
-                                                                <th><?php echo $row["price"] ?></th>
-                                                                <th><?php echo $row["username"] ?></th>
-                                                                <th><?php echo $row["date"] ?></th>
-                                                                <th><?php echo $row["c_status"] ?></th>
-                                                                <th><?php echo $row["remarks"] ?></th>
-                                                                
+                                                                <tr>
+                                                                    <th><?php echo $count ?></th>
+                                                                    <th><?php echo $row["serial_num"] ?></th>
+                                                                    <th><?php echo $row["product_name"] ?></th>
+                                                                    <th><?php echo $row["price"] ?></th>
+                                                                    <th><?php echo $row["username"] ?></th>
+                                                                    <th><?php echo $row["date"] ?></th>
+                                                                    <th><?php echo $row["c_status"] ?></th>
+                                                                    <th><?php echo $row["remarks"] ?></th>
 
-                                                            </tr>
-                                                    <?php
 
+                                                                </tr>
+
+                                                        <?php
+
+                                                            }
                                                         }
-                                                    }
 
-                                                    ?>
+                                                        ?>
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+
+                                                </table>
+
+                                            </div>
 
                                         </div>
                                     </div>
@@ -246,7 +286,6 @@ if (isset($_GET['logout'])) {
                         <html>
 
                         <head>
-                            <title>Add Item</title>
                             <link rel="stylesheet" type="text/css" href="style.css">
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
                         </head>
@@ -277,7 +316,33 @@ if (isset($_GET['logout'])) {
                     <!-- others plugins -->
                     <script src="assets/js/plugins.js"></script>
                     <script src="assets/js/scripts.js"></script>
-                
+
 </body>
+<script>
+    function createPDF() {
+        var sTable = document.getElementById('tab').innerHTML;
+
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 17px Calibri;}";
+        style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>Asset Records</title>'); // <title> FOR PDF HEADER.
+        win.document.write(style); // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable); // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); // CLOSE THE CURRENT WINDOW.
+
+        win.print(); // PRINT THE CONTENTS.
+    }
+</script>
 
 </html>

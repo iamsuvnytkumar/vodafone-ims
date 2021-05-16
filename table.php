@@ -21,7 +21,7 @@ if (isset($_GET['logout'])) {
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Inventory</title>
-    <link rel="shortcut icon" type="image/jpg" href="favicon.png"/>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/icon/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -37,6 +37,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" href="assets/css/default-css.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="manifest" href="manifest.json">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 
@@ -51,25 +52,64 @@ if (isset($_GET['logout'])) {
             text-align: center;
         }
 
-        .single-table{
+        .single-table {
             margin-left: auto;
             margin-right: auto;
             width: auto;
         }
 
-        .card{
+        .card {
             margin-left: auto;
             margin-right: auto;
             width: auto;
         }
-        .form-group{
+
+        .form-group {
             width: 700px;
         }
-        
+
+        .form-inline {
+            margin-left: 40px;
+        }
+
+        #staff {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            margin-left: 100px;
+            width: 50%;
+        }
+
+        #staff td,
+        #customstaffers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #staff tr:nth-child(even) {
+            background-color: whitesmoke;
+        }
+
+        #staff tr:hover {
+            background-color: whitesmoke;
+        }
+
+        #staff th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: whitesmoke;
+            color: black;
+        }
     </style>
 </head>
 
 <body>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+    </script>
     <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -167,40 +207,88 @@ if (isset($_GET['logout'])) {
             <!-- page title area end -->
             <div>
 
-                <h1 style="text-align:center">Add & Assign</h1>
 
                 <body>
-                    <form method="POST" class="form-inline" action="additem.php">
-                        <div class="form-group">
-                            <label for="name">Serial Number&nbsp;</label>
-                            <input type="text" class="form-control" name="serial_num">
-                            <br></br>
-                        </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 style="text-align:center" class="header-title">Staff Records</h4>
+                            <div class="single-table">
+                                <div class="table-responsive">
+                                    <table class="table text-dark text-center">
+                                        <thead class="text-uppercase">
+                                            <tr class="table-active">
+                                                <th scope="col">Employee #</th>
+                                                <th scope="col">First Name</th>
+                                                <th scope="col">Last Name</th>
 
-                        <div class="form-group">
-                            <label for="name">Product Name&nbsp;</label>
-                            <input type="text" class="form-control" name="product_name">
-                            <br></br>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Price&nbsp;</label>
-                            <input type="text" class="form-control" name="price">
-                            <br></br>
-                        </div>
+                                            </tr>
+                                        </thead>
 
-                        <div class="form-group">
-                            <label for="name">Assign to&nbsp;</label>
-                            <input type="text" class="form-control" name="username">
-                            <br></br>
-                        </div>
 
-                        <div class="form-group">
-                            <label for="name">Assigned on&nbsp;</label>
-                            <input type="date" class="form-control" name="date">
-                            <br>&nbsp;</br>
-                            <button type="submit" class="btn" name="add">Add item</button>
-                        </div>
-                    </form>
+                                        <tbody>
+                                            <?php
+                                            $conn = new mysqli('us-cdbr-east-03.cleardb.com', 'b8fde6f3e15a94', '9e0c4460', 'heroku_1fc3bbe61793651');
+                                            $sql = "SELECT * FROM staff";
+                                            $result = $conn->query($sql);
+                                            $count = 0;
+                                            if ($result->num_rows >  0) {
+
+                                                while ($row = $result->fetch_assoc()) {
+                                                    $count = $count + 1;
+                                            ?>
+
+
+                                                    <tr>
+                                                        <th><?php echo $row["username"] ?></th>
+                                                        <th><?php echo $row["first_name"] ?></th>
+                                                        <th><?php echo $row["last_name"]  ?></th>
+                                                    </tr>
+                                            <?php
+
+                                                }
+                                            }
+
+                                            ?>
+
+                                        </tbody>
+
+                                    </table>
+                                    <br></br>
+                                   
+                                    <h5 style="text-align:center">Add & Assign</h5>
+
+                                    <form method="POST" class="form-inline" action="additem.php">
+                                        <div class="form-group pull-right">
+                                            <label for="name">Serial Number&nbsp;</label>
+                                            <input type="text" class="form-control" name="serial_num">
+                                            <br></br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name">Product Name&nbsp;</label>
+                                            <input type="text" class="form-control" name="product_name">
+                                            <br></br>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Price&nbsp;</label>
+                                            <input type="text" class="form-control" name="price">
+                                            <br></br>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Assign to&nbsp;</label>
+                                            <input type="text" class="form-control" name="username">
+                                            <br></br>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Assigned on&nbsp;</label>
+                                            <input type="date" class="form-control" name="date">
+                                            <br>&nbsp;</br>
+                                            <button type="submit" class="btn" name="add">Add item</button>
+                                        </div>
+                                    </form>
+
                 </body>
 
                 <div class="main-content-inner">
@@ -216,7 +304,7 @@ if (isset($_GET['logout'])) {
                                             <table class="table text-dark text-center">
                                                 <thead class="text-uppercase">
                                                     <tr class="table-active">
-                                                      <th scope="col">ID</th>
+                                                        <th scope="col">ID</th>
                                                         <th scope="col">Serial Number</th>
                                                         <th scope="col">Product Name</th>
                                                         <th scope="col">Product Price</th>
@@ -310,10 +398,10 @@ if (isset($_GET['logout'])) {
                     <script src="assets/js/scripts.js"></script>
 
                     <footer>
-            <div class="footer-area">
-                <p>© Copyright Suvneet Kumar. All rights reserved.</a></p>
-            </div>
-        </footer>
+                        <div class="footer-area">
+                            <p>© Copyright Suvneet Kumar. All rights reserved.</a></p>
+                        </div>
+                    </footer>
 </body>
 
 </html>
